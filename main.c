@@ -3,18 +3,24 @@
 #include "AccCom.h"
 #include "slcd.h"
 
-uint8_t data;
+uint8_t data=11;
 
 int main()
 {
 	I2CInitialize();
-	sLCDInitialize();
-	data = AccRegisterRead(AccXRegMSBAddr);
+	slcdInitialize();
+//	AccInitialize();
+	I2CWriteRegister(0x1D,0x2A,0x01);
+	data = I2CReadRegister(0x1D,0x0D);
+
 	while (1)
 	{
-		slcdDisplay(data);
+		data = I2CReadRegister(0x1D,0x01);
+		slcdDisplay(data,16);
+		delay_mc(100);
 	}
 	
-	return 0;
+	// 0;
 
 }
+
