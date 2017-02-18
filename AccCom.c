@@ -31,6 +31,7 @@ void AccInterruptInitialize()
 {
 	SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK; // portC clk
 	PORTC->PCR[5] |= PORT_PCR_MUX(1); // ptc5 gpio
+	PORTC->PCR[5] |= PORT_PCR_PE_MASK;// pull down resistor
 	PORTC->PCR[5] |= PORT_PCR_IRQC(9); // rising edge interrupt
 	
 	NVIC_ClearPendingIRQ(PORTC_PORTD_IRQn);	
