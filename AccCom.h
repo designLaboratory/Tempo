@@ -62,6 +62,8 @@
 
 #define Watermark_Val	32
 
-uint8_t AccRegisterRead(uint8_t addr);
-void AccRegisterWrite(uint8_t addr,uint8_t data);
 void AccInitialize(void);
+void AccSetActive(void);
+void AccSingleTapSetup(void);
+
+void AccInterruptInitialize(void);

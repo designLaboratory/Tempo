@@ -3,24 +3,25 @@
 #include "AccCom.h"
 #include "slcd.h"
 
-uint8_t data=11;
+uint8_t data=0;
+
+void PORTC_D_IRQHandler()
+{
+	NVIC_ClearPendingIRQ(PORTC_D_IRQn);
+	if(PORTC->PTD[5])
+	data++;
+}
 
 int main()
 {
 	I2CInitialize();
 	slcdInitialize();
-//	AccInitialize();
-	I2CWriteRegister(0x1D,0x2A,0x01);
-	data = I2CReadRegister(0x1D,0x0D);
-
+	AccInitialize();
+	AccInterruptInitialize();
 	while (1)
 	{
-		data = I2CReadRegister(0x1D,0x01);
-		slcdDisplay(data,16);
-		delay_mc(100);
+		slcdDisplay(data, 10);
+		delay_ms(50);
 	}
-	
-	// 0;
-
 }
 
