@@ -8,7 +8,7 @@ uint8_t data=0;
 void PORTC_PORTD_IRQHandler()
 {
 	NVIC_ClearPendingIRQ(PORTC_PORTD_IRQn);
-	if(PORTC->PTD[5])
+	if((FPTC->PDIR&(1 << 5)))
 	data++;
 }
 
