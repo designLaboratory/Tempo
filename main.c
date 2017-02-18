@@ -5,9 +5,9 @@
 
 uint8_t data=0;
 
-void PORTC_D_IRQHandler()
+void PORTC_PORTD_IRQHandler()
 {
-	NVIC_ClearPendingIRQ(PORTC_D_IRQn);
+	NVIC_ClearPendingIRQ(PORTC_PORTD_IRQn);
 	if(PORTC->PTD[5])
 	data++;
 }

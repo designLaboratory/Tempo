@@ -57,11 +57,6 @@
 
 #define MMA845x_I2C_ADDRESS   0x1D
 
-#define SENSITIVITY_2G		  4096
-
-
-#define Watermark_Val	32
-
 void AccInitialize(void);
 void AccSetActive(void);
 void AccSingleTapSetup(void);
