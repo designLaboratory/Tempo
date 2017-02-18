@@ -8,8 +8,11 @@ uint8_t data=0;
 void PORTC_PORTD_IRQHandler()
 {
 	NVIC_ClearPendingIRQ(PORTC_PORTD_IRQn);
-	if((FPTC->PDIR&(1 << 5)))
-	data++;
+	if ((FPTC->PDIR&(1 << 5)))
+	{
+		PORTC->PCR[5] |= PORT_PCR_IRQC_MASK;
+		data++;
+	}
 }
 
 int main()

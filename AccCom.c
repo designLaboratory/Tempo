@@ -17,10 +17,10 @@ void AccSetActive()
 void AccSingleTapSetup()
 {
 	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_CFG_REG, 0x55); //single tap detect
-	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_THSX_REG, 0xA0); // X threshold 
-	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_THSY_REG, 0xA0); // Y threshold 
-	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_THSZ_REG, 0xA0); // Z threshold 
-	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_TMLT_REG, 0x0A); // pulse time limit 
+	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_THSX_REG, 0x20); // X threshold 
+	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_THSY_REG, 0x20); // Y threshold 
+	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_THSZ_REG, 0x30); // Z threshold 
+	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_TMLT_REG, 0xA0); // pulse time limit 
 	I2CWriteRegister(MMA845x_I2C_ADDRESS, PULSE_LTCY_REG, 0xF0); // pulse latency
 
 	I2CWriteRegister(MMA845x_I2C_ADDRESS, CTRL_REG4, 1<<3); //enable interrupt for pulse
