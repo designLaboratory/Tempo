@@ -12,6 +12,7 @@ void PORTC_PORTD_IRQHandler()
 	{
 		PORTC->PCR[5] |= PORT_PCR_ISF_MASK;
 		I2CReadRegister(MMA845x_I2C_ADDRESS, INT_SOURCE_REG);
+		I2CReadRegister(MMA845x_I2C_ADDRESS, PULSE_SRC_REG);
 		data++;
 	}
 }
@@ -25,7 +26,7 @@ int main()
 	while (1)
 	{
 		slcdDisplay(data, 10);
-		delay_ms(50);
+		delay_mc(50);
 	}
 }
 
