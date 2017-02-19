@@ -14,19 +14,19 @@ void OnClickInitialize(void)
 	TPM1->CNT = 0;									// reset counter
 	TPM1->MOD = 60 * clkFreq;						// modulo when 1 BPM
 	TPM1->SC |= TPM_SC_CMOD(1);						// counter increment on clk
-	
-	tempoValue = 0;									// reset tempoValue
 }
 
-void Click(void)
+uint16_t Click(void)
 {
 	if (TPM1->SC&TPM_SC_TOF_MASK)					// when timer overflow
 	{
-		tempoValue = 0;								// tempo is less than 1BPM
 		TPM1->CNT = 0;								// reset counter
-		return;
+		return 0;									// return tempo is less than 1BPM
 	}
 	uint16_t cntValue = TPM1->CNT;					// read counter value
-	tempoValue = 60 * clkFreq / cntValue;			// assign tempoValue
 	TPM1->CNT = 0;									// reset counter
+	if (cntValue == 0)								// if time is less than timer lsb
+		return 0xffff;								// return max value
+	return 60 * clkFreq / cntValue;					// return tempo value
+	
 }
