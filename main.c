@@ -11,6 +11,7 @@ void PORTC_PORTD_IRQHandler()
 	if ((FPTC->PDIR&(1 << 5)))
 	{
 		PORTC->PCR[5] |= PORT_PCR_ISF_MASK;
+		I2CReadRegister(MMA845x_I2C_ADDRESS, INT_SOURCE_REG);
 		data++;
 	}
 }
