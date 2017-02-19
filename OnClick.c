@@ -9,7 +9,7 @@ void OnClickInitialize(void)
 	MCG->C1 |= MCG_C1_IRCLKEN_MASK;					// internal CLK reference enabled
 	MCG->C1 |= MCG_C1_IREFS_MASK;					// slow internal CLK reference
 
-	TPM1->CnSC |= TPM_CnSC_MSA_MASK;				// software compare mode
+	TPM1->CONTROLS[0].CnSC |= TPM_CnSC_MSA_MASK;				// software compare mode
 	TPM1->SC |= TPM_SC_PS(5);						// prescaler value 32
 	TPM1->CNT = 0;									// reset counter
 	TPM1->MOD = 60 * clkFreq;						// modulo when 1 BPM
